@@ -38,17 +38,17 @@ def fromTemplateIntoCard(templ):
 
 
 # Cuando la información viene de la base de datos, para transformarla en una Card antes de mostrarla.
-def fromRepositoryIntoCard(repo_dict):
-    types_list = ast.literal_eval(repo_dict['types'])
-    return Card(
-        id=repo_dict.get('id'),
-        name=repo_dict.get('name'),
-        height=repo_dict.get('height'),
-        weight=repo_dict.get('weight'),
-        base=repo_dict.get('base_experience'),
-        types=types_list,
-        image=repo_dict.get('image')
-    )
+# def fromRepositoryIntoCard(repo_dict):
+#     types_list = ast.literal_eval(repo_dict['types'])
+#     return Card(
+#         id=repo_dict.get('id'),
+#         name=repo_dict.get('name'),
+#         height=repo_dict.get('height'),
+#         weight=repo_dict.get('weight'),
+#         base=repo_dict.get('base_experience'),
+#         types=types_list,
+#         image=repo_dict.get('image')
+#     )
 
 def safe_get(dic, *keys):
     for key in keys:
