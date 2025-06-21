@@ -37,7 +37,7 @@
         {% else %} {% for img in images %}
         <div class="col">
             <!-- evaluar si la imagen pertenece al tipo fuego, agua o planta -->
-            {% if "grass" in img.types %}
+            {% if img.types.0 == "grass"%}
                 <div class="card border-success mb-3 ms-5" style="max-width: 540px; ">
                     <div class="row g-0">
                         <div class="col-md-4">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div> 
-            {% elif "water" in img.types %}
+            {% elif img.types.0 == "water" %}
                 <div class="card border-primary mb-3 ms-5" style="max-width: 540px; ">
                  <div class="row g-0">
                      <div class="col-md-4">
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 </div>
-            {% elif "fire" in img.types %}
+            {% elif img.types.0 == "fire" %}
                 <div class="card border-danger mb-3 ms-5" style="max-width: 540px; ">
                  <div class="row g-0">
                      <div class="col-md-4">
