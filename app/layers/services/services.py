@@ -28,14 +28,38 @@ def filterByCharacter(name):
     return filtered_cards
 
 # función que filtra las cards según su tipo.
-def filterByType(type_filter):
-    filtered_cards = []
+# services.py
+from app.layers.utilities.card import Card
 
-    for card in getAllImages():
-        # debe verificar si la casa de la card coincide con la recibida por parámetro. Si es así, se añade al listado de filtered_cards.
-        filtered_cards.append(card)
+def get_all_pokemon():
+    data = [
+        {
+            "nombre": "Charmander",
+            "altura": 6,
+            "base": 5,
+            "peso": 85,
+            "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+            "tipos": ["fire"]
+        },
+        {
+            "nombre": "Squirtle",
+            "altura": 5,
+            "base": 4,
+            "peso": 90,
+            "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+            "tipos": ["water"]
+        },
+        {
+            "nombre": "Bulbasaur",
+            "altura": 7,
+            "base": 6,
+            "peso": 95,
+            "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+            "tipos": ["grass", "poison"]
+        }
+    ]
 
-    return filtered_cards
+    return [Card(p["nombre"], p["altura"], p["base"], p["peso"], p["imagen"], p["tipos"]) for p in data]
 
 # añadir favoritos (usado desde el template 'home.html')
 def saveFavourite(request):
