@@ -29,11 +29,15 @@ def search(request):
         return redirect('home')
 
 # función utilizada para filtrar por el tipo del Pokemon
+
+from app.layers.services import services  # o el módulo donde tengas las funciones
+
 def filter_by_type(request):
     type = request.POST.get('type', '')
 
     if type != '':
-        images = [] # debe traer un listado filtrado de imágenes, segun si es o contiene ese tipo.
+        all_pokemon = services.get_all_pokemon()  # ✅
+        images = [p for p in all_pokemon if type.lower() in [t.lower() for t in p.type]]  # ✅ filtrás acá
         favourite_list = []
 
         return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
