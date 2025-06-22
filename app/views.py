@@ -17,7 +17,7 @@ def home(request):
 
 # función utilizada en el buscador.
 def search(request):
-    name = request.POST.get('query', '')
+    name = request.POST.get('query', '')  
 
     # si el usuario ingresó algo en el buscador, se deben filtrar las imágenes por dicho ingreso.
     if (name != ''):
@@ -57,3 +57,6 @@ def deleteFavourite(request):
 def exit(request):
     logout(request)
     return redirect('home')
+
+
+##PRUEBA COMMIT Y PUSH
