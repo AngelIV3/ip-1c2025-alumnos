@@ -57,3 +57,5 @@ def deleteFavourite(request):
 def exit(request):
     logout(request)
     return redirect('home')
+
+    #Hola Cracks soy tomi
