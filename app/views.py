@@ -30,15 +30,21 @@ def search(request):
 
 # función utilizada para filtrar por el tipo del Pokemon
 
-from app.layers.services import services  # o el módulo donde tengas las funciones
-
 def filter_by_type(request):
     type = request.POST.get('type', '')
 
+    images = []
+    favourite_list = []
+
     if type != '':
-        all_pokemon = services.get_all_pokemon()  # ✅
-        images = [p for p in all_pokemon if type.lower() in [t.lower() for t in p.type]]  # ✅ filtrás acá
-        favourite_list = []
+        raw_data = services.getAllImages()
+
+        for n in range(len(raw_data)):
+            if type == raw_data[n].types[0]:
+                images.append(raw_data[n])
+            else:
+                continue
+
 
         return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
     else:
@@ -57,7 +63,10 @@ def saveFavourite(request):
 
 @login_required
 def deleteFavourite(request):
-    pass
+    services.deleteFavourite(request)
+    favourite_list = services.getAllFavourites
+
+    return render(request, 'favourites.html', {'favourite_list': favourite_list})
 
 @login_required
 def exit(request):
