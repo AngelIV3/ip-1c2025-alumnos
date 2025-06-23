@@ -22,7 +22,7 @@ def filterByCharacter(name):
     filtered_cards = []
 
     for card in getAllImages():
-        if card.name.lower() == name.strip().lower():
+        if card.name.lower() == name.lower():
             filtered_cards.append(card)
 
     return filtered_cards

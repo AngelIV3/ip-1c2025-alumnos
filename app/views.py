@@ -13,7 +13,11 @@ def home(request):
     images = services.getAllImages()
     favourite_list = services.getAllFavourites(request)
 
-    return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
+    favourites_names = []
+
+    for pokemon in favourite_list:
+        favourites_names.append(pokemon.name)
+    return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list, 'favourites_names': favourites_names})
 
 # función utilizada en el buscador.
 def search(request):
@@ -22,9 +26,10 @@ def search(request):
     # si el usuario ingresó algo en el buscador, se deben filtrar las imágenes por dicho ingreso.
     if (name != ''):
         images = services.filterByCharacter(name)
-        favourite_list = services.getAllFavourites(request=name)
+        favourite_list = []
+        
 
-        return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
+        return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list})
     else:
         return redirect('home')
 
@@ -58,7 +63,12 @@ def getAllFavouritesByUser(request):
 
 @login_required
 def saveFavourite(request):
-    return services.saveFavourite(request)
+    services.saveFavourite(request)
+
+    images = services.getAllImages()
+    favourite_list = services.getAllFavourites(request)
+
+    return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
     
 
 @login_required
