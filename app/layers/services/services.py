@@ -30,7 +30,7 @@ def filterByCharacter(name):
 
 # añadir favoritos (usado desde el template 'home.html')
 def saveFavourite(request):
-    fav = translator.fromRequestIntoCard(request)
+    fav = translator.fromTemplateIntoCard(request)
     fav.user = get_user(request) # le asignamos el usuario correspondiente.
 
     return repositories.save_favourite(fav) # lo guardamos en la BD.

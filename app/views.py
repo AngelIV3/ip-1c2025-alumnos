@@ -45,7 +45,6 @@ def filter_by_type(request):
             else:
                 continue
 
-
         return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
     else:
         return redirect('home')
@@ -59,12 +58,13 @@ def getAllFavouritesByUser(request):
 
 @login_required
 def saveFavourite(request):
-    pass
+    return services.saveFavourite(request)
+    
 
 @login_required
 def deleteFavourite(request):
     services.deleteFavourite(request)
-    favourite_list = services.getAllFavourites
+    favourite_list = services.getAllFavourites(request)
 
     return render(request, 'favourites.html', {'favourite_list': favourite_list})
 
